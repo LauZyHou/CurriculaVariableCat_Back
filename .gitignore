@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+static/*
+collect_static/*
+media/*
+**/__pycache__/*
+**/migrations/*
+
+!.gitkeep
