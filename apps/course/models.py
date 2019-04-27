@@ -28,18 +28,40 @@ class Semester(models.Model):
 
 class Course(models.Model):
     """开课"""
+    TIME_CHOICE = (
+        (0, "1-2"),
+        (1, "3-4"),
+        (2, "5-6"),
+        (3, "7-8"),
+        (4, "9-10"),
+        (5, "11-13")
+    )
+    WEEK_CHOICE = (
+        (0, "星期一"),
+        (1, "星期二"),
+        (2, "星期三"),
+        (3, "星期四"),
+        (4, "星期五")
+    )
     teacher = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="开课教师")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="学科")
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, verbose_name="学期")
     capacity = models.PositiveSmallIntegerField(verbose_name="课程容量")
-    schedule = models.BinaryField(max_length=80, verbose_name="课程表")  # 5*13
+    week1 = models.PositiveSmallIntegerField(choices=WEEK_CHOICE, verbose_name="上课周(其一)",
+                                             null=True, blank=True)
+    time1 = models.PositiveSmallIntegerField(choices=TIME_CHOICE, verbose_name="上课时间(其一)",
+                                             null=True, blank=True)
+    week2 = models.PositiveSmallIntegerField(choices=WEEK_CHOICE, verbose_name="上课周(其二)",
+                                             null=True, blank=True)
+    time2 = models.PositiveSmallIntegerField(choices=TIME_CHOICE, verbose_name="上课时间(其二)",
+                                             null=True, blank=True)
 
     class Meta:
         verbose_name = "开课"
         verbose_name_plural = "开课们"
 
     def __str__(self):
-        return self.subject.name + "({0},{1})".format(self.teacher.name, str(self.semester))
+        return self.subject.name + "({0},{1})".format(self.teacher.first_name, str(self.semester))
 
 
 class SelectCourse(models.Model):
@@ -53,4 +75,4 @@ class SelectCourse(models.Model):
         unique_together = ("student", "course")
 
     def __str__(self):
-        return self.student.name + "->" + str(self.course)
+        return self.student.first_name + "->" + str(self.course)

@@ -8,6 +8,16 @@ class SemesterAdmin(object):
     list_display = ["id", "year", "season"]
 
 
+class CourseWeekAdmin(object):
+    """上课星期"""
+    list_display = ["id", "week"]
+
+
+class CourseTimeAdmin(object):
+    """上课时间"""
+    list_display = ["id", "time"]
+
+
 class CourseAdmin(object):
     """开课"""
     list_display = ["id", "teacher", "subject", "semester"]

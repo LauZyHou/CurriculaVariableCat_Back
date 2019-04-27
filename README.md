@@ -1,6 +1,12 @@
 # CurriculaVariableCat_Back
 超简洁选课系统(服务端)，Django REST framework。
-## 展示
+
+![Anaconda](https://img.shields.io/badge/Anaconda-4.6.12-brightgreen.svg)
+![MySQL](https://img.shields.io/badge/MySQL-5.7.21-blue.svg)
+
+## 前端项目地址
+[CurriculaVariableCat_Front](https://github.com/LauZyHou/CurriculaVariableCat_Front)
+## 后端运行展示
 
 ## 项目构建
 创建虚拟环境：
@@ -35,13 +41,8 @@ python manage.py createsuperuser
 > 若使用PyCharm，可以在Tools->run manage.py Task调出Task指令的Terminal，使用时无需再输入`python manage.py`。
 
 ## 项目运行
-```
-python manage.py runserver localhost:8000
-```
-若在PyCharm中运行，添加Environment Variables：
+直接在PyCharm中运行，添加Environment Variables：
 ```
 DJANGO_SETTINGS_MODULE=CurriculaVariableCat.settings
 PYTHONUNBUFFERED=1
 ```
-## 前端项目地址
-[CurriculaVariableCat_Front](https://github.com/LauZyHou/CurriculaVariableCat_Front)

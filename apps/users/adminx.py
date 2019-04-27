@@ -10,7 +10,7 @@ class BaseSetting(object):
 class GlobalSettings(object):
     site_title = "CurriculaVariableCat选课系统后台"
     site_footer = "2019 Zhihao Liu at SHU"
-    menu_style = "accordion"
+    # menu_style = "accordion"
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
