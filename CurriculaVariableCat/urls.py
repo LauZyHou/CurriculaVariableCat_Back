@@ -31,10 +31,13 @@ from xadmin.plugins import xversion
 xversion.register_models()
 
 from users.views import KBViewSet
+from course.views import CourseViewSet, SelectCourseViewSet
 
 # DRF:REST风格的router
 router = DefaultRouter()
 router.register(r'kb', KBViewSet, base_name='kb')
+router.register(r'course', CourseViewSet, base_name='course')
+router.register(r'selectcourse', SelectCourseViewSet, base_name='selectcourse')
 
 urlpatterns = [
     path('', include(router.urls)),

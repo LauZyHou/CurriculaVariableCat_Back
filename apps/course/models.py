@@ -45,6 +45,8 @@ class Course(models.Model):
     )
     teacher = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="开课教师")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="学科")
+    sub_logic_id = models.CharField(max_length=8, null=True, blank=True, verbose_name="*课程号")
+    sub_name = models.CharField(null=True, blank=True, max_length=20, verbose_name="*学科名")
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, verbose_name="学期")
     capacity = models.PositiveSmallIntegerField(verbose_name="课程容量")
     week1 = models.PositiveSmallIntegerField(choices=WEEK_CHOICE, verbose_name="上课周(其一)",
