@@ -50,9 +50,9 @@ class Course(models.Model):
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, verbose_name="学期")
     capacity = models.PositiveSmallIntegerField(verbose_name="课程容量")
     week1 = models.PositiveSmallIntegerField(choices=WEEK_CHOICE, verbose_name="上课周(其一)",
-                                             null=True, blank=True)
+                                             default=0)
     time1 = models.PositiveSmallIntegerField(choices=TIME_CHOICE, verbose_name="上课时间(其一)",
-                                             null=True, blank=True)
+                                             default=0)
     week2 = models.PositiveSmallIntegerField(choices=WEEK_CHOICE, verbose_name="上课周(其二)",
                                              null=True, blank=True)
     time2 = models.PositiveSmallIntegerField(choices=TIME_CHOICE, verbose_name="上课时间(其二)",

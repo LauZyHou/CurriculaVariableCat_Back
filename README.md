@@ -6,7 +6,9 @@
 
 ## 前端项目地址
 [CurriculaVariableCat_Front](https://github.com/LauZyHou/CurriculaVariableCat_Front)
+
 ## 后端运行展示
+![](./README_PIC/1.png)
 
 ## 项目构建
 创建虚拟环境：
@@ -40,6 +42,38 @@ python manage.py createsuperuser
 ```
 > 若使用PyCharm，可以在Tools->run manage.py Task调出Task指令的Terminal，使用时无需再输入`python manage.py`。
 
+## 数据库中的操作
+### 定义触发器
+开课时,将课程号和课程名自动写入开课表：
+```mysql
+drop trigger if exists trigger_course;
+delimiter $$
+create trigger trigger_course
+before insert on course_course for each row
+begin
+    declare sid varchar(8);
+    declare sname varchar(20);
+    select logic_id into sid from subject_subject where id=new.subject_id;
+    select name into sname from subject_subject where id=new.subject_id;
+    set new.sub_logic_id=sid, new.sub_name=sname;
+end;
+$$
+```
+更新开课表时，将课程号和课程名自动更新进开课表：
+```mysql
+drop trigger if exists trigger_course2;
+delimiter $$
+create trigger trigger_course2
+before update on course_course for each row
+begin
+    declare sid varchar(8);
+    declare sname varchar(20);
+    select logic_id into sid from subject_subject where id=new.subject_id;
+    select name into sname from subject_subject where id=new.subject_id;
+    set new.sub_logic_id=sid, new.sub_name=sname;
+end;
+$$
+```
 ## 项目运行
 直接在PyCharm中运行，添加Environment Variables：
 ```

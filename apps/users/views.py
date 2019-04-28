@@ -27,10 +27,9 @@ class KBViewSet(mixins.ListModelMixin,
             # 这里name用Subject的name(学科名),而id用SelectCourse的id(删课时候好删除)
             use_dict = {'name': c.course.subject.name, 'id': c.id}
             # use_dict = c.course.subject.name
-            use_week1 = 'xq' + str(week1 + 1)
-            use_week2 = 'xq' + str(week2 + 1)
             # 分别处理
             if week1 is not None:
+                use_week1 = 'xq' + str(week1 + 1)
                 time1_a = time1 * 2
                 ret_list[time1_a][use_week1] = use_dict
                 if time1 == 5:
@@ -40,6 +39,7 @@ class KBViewSet(mixins.ListModelMixin,
                     ret_list[time1_a + 1][use_week1] = use_dict
             print(ret_list)
             if week2 is not None:
+                use_week2 = 'xq' + str(week2 + 1)
                 time2_a = time2 * 2
                 ret_list[time2_a][use_week2] = use_dict
                 if time2 == 5:
