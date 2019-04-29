@@ -74,6 +74,42 @@ begin
 end;
 $$
 ```
+防止管理员误触为学生开课：
+```mysql
+drop trigger if exists trigger_course3;
+delimiter $$
+create trigger trigger_course3
+after insert on course_course for each row
+begin
+	declare user_kind tinyint(1);
+    select kind into user_kind
+    from users_userprofile
+    where id=new.teacher_id;
+    if user_kind=1 then
+		delete from course_course
+        where id=new.id;
+	end if;
+end;
+$$
+```
+防止管理员误触当更改课程老师时更改到学生：
+```mysql
+drop trigger if exists trigger_course4;
+delimiter $$
+create trigger trigger_course4
+after update on course_course for each row
+begin
+	declare user_kind tinyint(1);
+    select kind into user_kind
+    from users_userprofile
+    where id=new.teacher_id;
+    if user_kind=1 then
+		delete from course_course
+        where id=new.id;
+	end if;
+end;
+$$
+```
 ## 项目运行
 直接在PyCharm中运行，添加Environment Variables：
 ```
